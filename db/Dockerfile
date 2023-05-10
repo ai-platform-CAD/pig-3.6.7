@@ -22,8 +22,7 @@ COPY ./pig_config.sql $WORK_PATH/
 COPY ./pig_codegen.sql $WORK_PATH/
 COPY ./pig_job.sql $WORK_PATH/
 
-# k8s-server
-COPY ./k8s-server.sql $WORK_PATH/
+
 
 #定义shell文件名
 ENV INSTALL_DB_SHELL initdb.sh
