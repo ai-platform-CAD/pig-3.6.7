@@ -1,6 +1,5 @@
 package com.pig4cloud.pig.operator.api.vo;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 
 import java.io.Serializable;
