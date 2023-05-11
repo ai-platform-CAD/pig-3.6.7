@@ -7,6 +7,5 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class OperatorDTO extends Operator {
-	private String userId;
 
 }

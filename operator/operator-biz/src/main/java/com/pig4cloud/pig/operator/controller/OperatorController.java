@@ -23,6 +23,7 @@ import com.pig4cloud.pig.common.core.util.R;
 import com.pig4cloud.pig.common.log.annotation.SysLog;
 import com.pig4cloud.pig.common.security.service.PigUser;
 import com.pig4cloud.pig.common.security.util.SecurityUtils;
+import com.pig4cloud.pig.operator.api.dto.OperatorDTO;
 import com.pig4cloud.pig.operator.api.entity.Operator;
 import com.pig4cloud.pig.operator.api.vo.OperatorVO;
 import com.pig4cloud.pig.operator.service.OperatorService;
@@ -90,8 +91,9 @@ public class OperatorController {
 	@SysLog("新增算子")
 	@PostMapping
 	@PreAuthorize("@pms.hasPermission('operator_manage_add')")
-	public R save(@RequestBody Operator operator) {
-		return R.ok(operatorService.saveOperator(operator));
+	public R save(@RequestBody OperatorDTO operatorDTO) {
+		PigUser user = SecurityUtils.getUser();
+		return R.ok(operatorService.saveOperator(operatorDTO, user.getId()));
 	}
 
 	/**

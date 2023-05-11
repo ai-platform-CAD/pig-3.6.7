@@ -20,6 +20,7 @@ package com.pig4cloud.pig.operator.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.pig4cloud.pig.operator.api.dto.OperatorDTO;
 import com.pig4cloud.pig.operator.api.entity.Operator;
 import com.pig4cloud.pig.operator.api.vo.OperatorVO;
 
@@ -38,7 +39,7 @@ public interface OperatorService extends IService<Operator> {
 	 * @param operator operator
 	 * @return 成功True，失败False
 	 */
-	boolean saveOperator(Operator operator);
+	boolean saveOperator(OperatorDTO operatorDTO, Long userId);
 
 	/**
 	 * 删除

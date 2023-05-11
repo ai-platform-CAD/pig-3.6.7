@@ -19,12 +19,18 @@ package com.pig4cloud.pig.operator.service.impl;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.pig4cloud.pig.admin.api.entity.SysUser;
+import com.pig4cloud.pig.common.core.constant.CommonConstants;
+import com.pig4cloud.pig.operator.api.dto.OperatorDTO;
 import com.pig4cloud.pig.operator.api.entity.Operator;
+import com.pig4cloud.pig.operator.api.entity.SysUserOperator;
 import com.pig4cloud.pig.operator.api.vo.OperatorVO;
 import com.pig4cloud.pig.operator.mapper.OperatorMapper;
+import com.pig4cloud.pig.operator.mapper.SysUserOperatorMapper;
 import com.pig4cloud.pig.operator.service.OperatorService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,13 +45,21 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class OperatorServiceImpl extends ServiceImpl<OperatorMapper, Operator> implements OperatorService {
-	private final OperatorMapper operatorMapper;
+	private final SysUserOperatorMapper sysUserOperatorMapper;
 
 	@Override
-	public boolean saveOperator(Operator operator) {
+	public boolean saveOperator(OperatorDTO operatorDTO, Long userId) {
+		Operator operator = new Operator();
+		BeanUtils.copyProperties(operatorDTO, operator);
 		log.info("Saving operator {}", operator);
 		// 在数据库中创建
+		// operator
 		baseMapper.insert(operator);
+		// sys_user_operator
+		SysUserOperator sysUserOperator = new SysUserOperator();
+		sysUserOperator.setOperatorId(operator.getOperatorId());
+		sysUserOperator.setUserId(userId);
+		sysUserOperatorMapper.insert(sysUserOperator);
 		return true;
 	}
 
@@ -53,8 +67,10 @@ public class OperatorServiceImpl extends ServiceImpl<OperatorMapper, Operator> i
 	public boolean removeOperatorById(Long operatorId) {
 		log.info("Removing operatorId id={}", operatorId);
 		// 从数据库中移除
+		// operator
 		baseMapper.deleteById(operatorId);
-		return true;
+		// sys_user_operator
+		return sysUserOperatorMapper.deleteSysUserOperatorByOperatorId(operatorId);
 	}
 
 	@Override
@@ -67,7 +83,7 @@ public class OperatorServiceImpl extends ServiceImpl<OperatorMapper, Operator> i
 
 	@Override
 	public IPage<List<OperatorVO>> getOperatorPageByUserId(Page page, Long userId) {
-		return operatorMapper.getOperatorPageByUserId(page, userId);
+		return baseMapper.getOperatorPageByUserId(page, userId);
 	}
 
 }

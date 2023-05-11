@@ -11,9 +11,11 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@TableName("Operator")
+@TableName("operator")
 @Schema(name = "算子表")
 public class Operator extends BaseEntity {
+	private static final long serialVersionUID = 1L;
+
 	@TableId(type = IdType.ASSIGN_ID)
 	@Schema(name = "operatorId")
 	private Long operatorId;
