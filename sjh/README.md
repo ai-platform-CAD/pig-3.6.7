@@ -23,7 +23,7 @@ docker-compose build
 docker-compose up -d
 ```
 
-### 创建docker container `pig-mysql`
+### 3.1 创建docker container `pig-mysql`
 
 ```shell
 # 在pig项目根目录下
@@ -35,7 +35,7 @@ docker run -itd --name pig-mysql --restart=always -p 3306:3306 -e MYSQL_ROOT_PAS
 
 ```
 
-### 创建docker container `pig-redis`
+### 3.2 创建docker container `pig-redis`
 
 ```shell
 docker rm -f pig-redis
