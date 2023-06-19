@@ -1,27 +1,44 @@
 USE `pig`;
 
 -- 菜单SQL
-insert into `sys_menu` (`menu_id`, `parent_id`, `path`,
-                        `permission`, `type`, `icon`, `del_flag`, `create_time`, `sort_order`, `update_time`, `name`)
-values (20000, '-1', '/operator',
-        '', '0', 'icon-web-icon-', '0', '2023-03-01 10:00:00', '20000', '2023-03-01 10:00:00', '算子模块');
+insert into `sys_menu` (`menu_id`, `parent_id`, `path`, `permission`, `icon`, `sort_order`, `type`,
+                        `del_flag`, `create_time`, `update_time`, `name`)
+values (20000, -1, '/operator', '', 'icon-didaima', 20000, '0',
+        '0', '2023-03-01 10:00:00', '2023-03-01 10:00:00', '算子模块');
+
+# 算子管理
+insert into `sys_menu` (`menu_id`, `parent_id`, `path`, `permission`, `icon`, `sort_order`, `type`,
+                        `del_flag`, `create_time`, `update_time`, `name`)
+values (20100, 20000, '/operator/manage/index', '', 'icon-caidan1', 20100,
+        '0', '0', '2023-03-01 10:00:00', '2023-03-01 10:00:00', '算子管理模块');
+
+insert into `sys_menu`(`parent_id`, `menu_id`, `permission`, `type`, `path`,
+                       `icon`, `del_flag`, `create_time`, `sort_order`, `update_time`, `name`)
+values (20100, 20101, 'operator_manage_get', '1', null,
+        '1', '0', '2023-03-01 10:00:00', 0, '2023-03-01 10:00:00', '算子表查看'),
+       (20100, 20102, 'operator_manage_add', '1', null,
+        '1', '0', '2023-03-01 10:00:00', 1, '2023-03-01 10:00:00', '算子表新增'),
+       (20100, 20103, 'operator_manage_edit', '1', null,
+        '1', '0', '2023-03-01 10:00:00', 2, '2023-03-01 10:00:00', '算子表修改'),
+       (20100, 20104, 'operator_manage_del', '1', null,
+        '1', '0', '2023-03-01 10:00:00', 3, '2023-03-01 10:00:00', '算子表删除');
 
 # 算子编排
-insert into `sys_menu` (`menu_id`, `parent_id`, `path`,
-                        `permission`, `type`, `icon`, `del_flag`, `create_time`, `sort_order`, `update_time`, `name`)
-values (20100, '20000', '/operator/manage/index',
-        '', '0', 'icon-caidan1', '0', '2023-03-01 10:00:00', '20100', '2023-03-01 10:00:00', '算子编排模块');
+insert into `sys_menu` (`menu_id`, `parent_id`, `path`, `permission`, `icon`, `sort_order`, `type`,
+                        `del_flag`, `create_time`, `update_time`, `name`)
+values (20200, 20000, '/operator/orchestration/index', 'icon-web-icon-', '', 20200, '0',
+        '0', '2023-03-01 10:00:00', '2023-03-01 10:00:00', '算子编排模块');
 
-insert into `sys_menu`(`parent_id`, `menu_id`, `permission`,
-                       `type`, `path`, `icon`, `del_flag`, `create_time`, `sort_order`, `update_time`, `name`)
-values (20100, 20101, 'operator_manage_get',
-        '1', null, '1', '0', '2023-03-01 10:00:00', '0', '2023-03-01 10:00:00', '算子表查看'),
-       (20100, 20102, 'operator_manage_add',
-        '1', null, '1', '0', '2023-03-01 10:00:00', '1', '2023-03-01 10:00:00', '算子表新增'),
-       (20100, 20103, 'operator_manage_edit',
-        '1', null, '1', '0', '2023-03-01 10:00:00', '2', '2023-03-01 10:00:00', '算子表修改'),
-       (20100, 20104, 'operator_manage_del',
-        '1', null, '1', '0', '2023-03-01 10:00:00', '3', '2023-03-01 10:00:00', '算子表删除');
+insert into `sys_menu`(`parent_id`, `menu_id`, `permission`, `type`, `path`,
+                       `icon`, `del_flag`, `create_time`, `sort_order`, `update_time`, `name`)
+values (20200, 20201, 'operator_orchestration_get', '1', null,
+        '1', '0', '2023-03-01 10:00:00', 0, '2023-03-01 10:00:00', '算子编排表查看'),
+       (20200, 20202, 'operator_orchestration_add', '1', null,
+        '1', '0', '2023-03-01 10:00:00', 1, '2023-03-01 10:00:00', '算子编排表新增'),
+       (20200, 20203, 'operator_orchestration_edit', '1', null,
+        '1', '0', '2023-03-01 10:00:00', 2, '2023-03-01 10:00:00', '算子编排表修改'),
+       (20200, 20204, 'operator_orchestration_del', '1', null,
+        '1', '0', '2023-03-01 10:00:00', 3, '2023-03-01 10:00:00', '算子编排表删除');
 
 
 DROP DATABASE IF EXISTS `operator_orchestration`;
