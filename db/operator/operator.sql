@@ -40,7 +40,25 @@ values (20200, 20201, 'operator_orchestration_get', '1', null,
        (20200, 20204, 'operator_orchestration_del', '1', null,
         '1', '0', '2023-03-01 10:00:00', 3, '2023-03-01 10:00:00', '算子编排表删除');
 
+# 工作流管理
+insert into `sys_menu` (`menu_id`, `parent_id`, `path`, `permission`, `icon`, `sort_order`, `type`,
+                        `del_flag`, `create_time`, `update_time`, `name`)
+values (20300, 20000, '/operator/workflow/index', '', 'icon-caidan1', 20300,
+        '0', '0', '2023-03-01 10:00:00', '2023-03-01 10:00:00', '工作流管理模块');
 
+insert into `sys_menu`(`parent_id`, `menu_id`, `permission`, `type`, `path`,
+                       `icon`, `del_flag`, `create_time`, `sort_order`, `update_time`, `name`)
+values (20300, 20301, 'workflow_manage_get', '1', null,
+        '1', '0', '2023-03-01 10:00:00', 0, '2023-03-01 10:00:00', '工作流表查看'),
+       (20300, 20302, 'workflow_manage_add', '1', null,
+        '1', '0', '2023-03-01 10:00:00', 1, '2023-03-01 10:00:00', '工作流表新增'),
+       (20300, 20303, 'workflow_manage_edit', '1', null,
+        '1', '0', '2023-03-01 10:00:00', 2, '2023-03-01 10:00:00', '工作流表修改'),
+       (20300, 20304, 'workflow_manage_del', '1', null,
+        '1', '0', '2023-03-01 10:00:00', 3, '2023-03-01 10:00:00', '工作流表删除');
+
+
+# 算子编排数据库
 DROP DATABASE IF EXISTS `operator_orchestration`;
 
 CREATE DATABASE `operator_orchestration` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
@@ -85,3 +103,26 @@ CREATE TABLE `sys_user_operator`
   ROW_FORMAT = DYNAMIC COMMENT ='用户算子表';
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+
+-- ----------------------------
+-- Table structure for workflow
+-- ----------------------------
+DROP TABLE IF EXISTS `workflow`;
+CREATE TABLE `workflow`
+(
+    `workflow_id`   bigint                       NOT NULL,
+    `workflow_name` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '工作流名称',
+    `data`          longtext COLLATE utf8_bin    NOT NULL COMMENT 'DATA数据',
+    `user_id`       bigint                       NOT NULL,
+    `create_time`   datetime                     DEFAULT NULL COMMENT '创建时间',
+    `create_by`     varchar(64) COLLATE utf8_bin DEFAULT NULL COMMENT '创建人',
+    `update_time`   datetime                     DEFAULT NULL COMMENT '修改时间',
+    `update_by`     varchar(64) COLLATE utf8_bin DEFAULT NULL COMMENT '更新人',
+    PRIMARY KEY (`workflow_id`),
+    KEY `workflow_idx1_workflow_name` (`workflow_name`),
+    FOREIGN KEY (user_id) REFERENCES pig.sys_user (user_id)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8
+  COLLATE = utf8_bin
+  ROW_FORMAT = DYNAMIC COMMENT ='工作流表';
