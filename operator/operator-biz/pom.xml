@@ -66,6 +66,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-undertow</artifactId>
 		</dependency>
+		<!-- argo workflow dep -->
+		<dependency>
+			<groupId>io.argoproj.workflow</groupId>
+			<artifactId>argo-client-java</artifactId>
+			<version>v3.3.8</version>
+		</dependency>
 	</dependencies>
 
 	<build>
