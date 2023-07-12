@@ -57,6 +57,23 @@ values (20300, 20301, 'workflow_manage_get', '1', null,
        (20300, 20304, 'workflow_manage_del', '1', null,
         '1', '0', '2023-03-01 10:00:00', 3, '2023-03-01 10:00:00', '工作流表删除');
 
+# 训练管理
+insert into `sys_menu` (`menu_id`, `parent_id`, `path`, `permission`, `icon`, `sort_order`, `type`,
+                        `del_flag`, `create_time`, `update_time`, `name`)
+values (20400, 20000, '/operator/training/index', '', 'icon-caidan1', 20400,
+        '0', '0', '2023-03-01 10:00:00', '2023-03-01 10:00:00', '训练管理模块');
+
+insert into `sys_menu`(`parent_id`, `menu_id`, `permission`, `type`, `path`,
+                       `icon`, `del_flag`, `create_time`, `sort_order`, `update_time`, `name`)
+values (20400, 20401, 'training_manage_get', '1', null,
+        '1', '0', '2023-03-01 10:00:00', 0, '2023-03-01 10:00:00', '训练表查看'),
+       (20400, 20402, 'training_manage_add', '1', null,
+        '1', '0', '2023-03-01 10:00:00', 1, '2023-03-01 10:00:00', '训练表新增'),
+       (20400, 20403, 'training_manage_edit', '1', null,
+        '1', '0', '2023-03-01 10:00:00', 2, '2023-03-01 10:00:00', '训练表修改'),
+       (20400, 20404, 'training_manage_del', '1', null,
+        '1', '0', '2023-03-01 10:00:00', 3, '2023-03-01 10:00:00', '训练表删除');
+
 
 # 算子编排数据库
 DROP DATABASE IF EXISTS `operator_orchestration`;
@@ -126,3 +143,28 @@ CREATE TABLE `workflow`
   DEFAULT CHARSET = utf8
   COLLATE = utf8_bin
   ROW_FORMAT = DYNAMIC COMMENT ='工作流表';
+
+-- ----------------------------
+-- Table structure for training
+-- ----------------------------
+DROP TABLE IF EXISTS `training`;
+CREATE TABLE `training`
+(
+    `training_id`        bigint                       NOT NULL,
+    `training_name`      varchar(50) COLLATE utf8_bin NOT NULL COMMENT '训练名称',
+    `training_container` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '训练容器',
+    `training_script`    varchar(50) COLLATE utf8_bin NOT NULL COMMENT '训练脚本',
+    `training_command`   varchar(50) COLLATE utf8_bin NOT NULL COMMENT '训练指令',
+    `training_output`    varchar(50) COLLATE utf8_bin NOT NULL COMMENT '训练输出',
+    `user_id`            bigint                       NOT NULL,
+    `create_time`        datetime                     DEFAULT NULL COMMENT '创建时间',
+    `create_by`          varchar(64) COLLATE utf8_bin DEFAULT NULL COMMENT '创建人',
+    `update_time`        datetime                     DEFAULT NULL COMMENT '修改时间',
+    `update_by`          varchar(64) COLLATE utf8_bin DEFAULT NULL COMMENT '更新人',
+    PRIMARY KEY (`training_id`),
+    KEY `training_idx1_training_name` (`training_name`),
+    FOREIGN KEY (user_id) REFERENCES pig.sys_user (user_id)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8
+  COLLATE = utf8_bin
+  ROW_FORMAT = DYNAMIC COMMENT ='训练表';
