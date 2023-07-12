@@ -5,19 +5,20 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.pig4cloud.pig.operator.api.entity.Operator;
 import com.pig4cloud.pig.operator.api.vo.OperatorVO;
+import com.pig4cloud.pig.operator.api.vo.TrainingVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 
 @Mapper
-public interface OperatorMapper extends BaseMapper<Operator> {
+public interface TrainingMapper extends BaseMapper<Operator> {
 
 	/**
-	 * 分页查询当前User的Secret
+	 * 分页查询当前User的TrainingVO
 	 *
 	 * @param page   page
 	 * @param userId userId
-	 * @return IPage<List < SecretVO>>
+	 * @return TrainingVO集合
 	 */
-	IPage<OperatorVO> getOperatorPageByUserId(Page page, @Param("userId") Long userId);
+	IPage<TrainingVO> getTrainingPageByUserId(Page page, @Param("userId") Long userId);
 }

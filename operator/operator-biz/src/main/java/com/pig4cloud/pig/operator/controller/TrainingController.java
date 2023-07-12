@@ -7,8 +7,8 @@ import com.pig4cloud.pig.common.log.annotation.SysLog;
 import com.pig4cloud.pig.common.security.service.PigUser;
 import com.pig4cloud.pig.common.security.util.SecurityUtils;
 import com.pig4cloud.pig.operator.api.dto.OperatorDTO;
-import com.pig4cloud.pig.operator.api.vo.OperatorVO;
-import com.pig4cloud.pig.operator.service.OperatorService;
+import com.pig4cloud.pig.operator.api.vo.TrainingVO;
+import com.pig4cloud.pig.operator.service.TrainingService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -22,12 +22,12 @@ import javax.validation.Valid;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/manage")
-@Tag(name = "算子表管理")
+@RequestMapping("/training")
+@Tag(name = "训练表管理")
 @SecurityRequirement(name = HttpHeaders.AUTHORIZATION)
 public class TrainingController {
 
-	private final OperatorService operatorService;
+	private final TrainingService trainingService;
 
 	/**
 	 * 分页查询
@@ -37,23 +37,23 @@ public class TrainingController {
 	 */
 	@Operation(summary = "分页查询", description = "分页查询")
 	@GetMapping("/page")
-	@PreAuthorize("@pms.hasPermission('operator_manage_get')")
-	public R<IPage<OperatorVO>> getOperatorPage(Page page) {
+	@PreAuthorize("@pms.hasPermission('training_manage_get')")
+	public R<IPage<TrainingVO>> getTrainingPage(Page page) {
 		PigUser user = SecurityUtils.getUser();
-		return R.ok(operatorService.getOperatorPageByUserId(page, user.getId()));
+		return R.ok(trainingService.getTrainingPageByUserId(page, user.getId()));
 	}
 
 	/**
 	 * id查询
 	 *
-	 * @param operatorId operatorId
+	 * @param trainingId xunlianID
 	 * @return R
 	 */
 	@Operation(summary = "通过id查询", description = "通过id查询")
-	@GetMapping("/{operatorId}")
-	@PreAuthorize("@pms.hasPermission('operator_manage_get')")
-	public R getById(@PathVariable("operatorId") Long operatorId) {
-		return R.ok(operatorService.getById(operatorId));
+	@GetMapping("/{trainingId}")
+	@PreAuthorize("@pms.hasPermission('training_manage_get')")
+	public R getById(@PathVariable("trainingId") Long trainingId) {
+		return R.ok(trainingService.getById(trainingId));
 	}
 
 	/**
@@ -62,13 +62,13 @@ public class TrainingController {
 	 * @param operatorDTO operatorDTO
 	 * @return R
 	 */
-	@Operation(summary = "新增算子", description = "新增算子")
+	@Operation(summary = "新增", description = "新增算子")
 	@SysLog("新增算子")
 	@PostMapping
-	@PreAuthorize("@pms.hasPermission('operator_manage_add')")
+	@PreAuthorize("@pms.hasPermission('training_manage_add')")
 	public R save(@RequestBody OperatorDTO operatorDTO) {
 		PigUser user = SecurityUtils.getUser();
-		return R.ok(operatorService.saveOperator(operatorDTO, user.getId()));
+		return R.ok(trainingService.saveTraining(operatorDTO, user.getId()));
 	}
 
 	/**
@@ -80,9 +80,9 @@ public class TrainingController {
 	@Operation(summary = "修改算子", description = "修改算子")
 	@SysLog("修改算子")
 	@PutMapping
-	@PreAuthorize("@pms.hasPermission('operator_manage_edit')")
+	@PreAuthorize("@pms.hasPermission('training_manage_edit')")
 	public R updateById(@Valid @RequestBody OperatorDTO operatorDTO) {
-		return R.ok(operatorService.updateOperator(operatorDTO));
+		return R.ok(trainingService.updateOperator(operatorDTO));
 	}
 
 	/**
@@ -94,9 +94,9 @@ public class TrainingController {
 	@Operation(summary = "通过id删除算子", description = "通过id删除算子")
 	@SysLog("通过id删除算子")
 	@DeleteMapping("/{operatorId}")
-	@PreAuthorize("@pms.hasPermission('operator_manage_del')")
+	@PreAuthorize("@pms.hasPermission('training_manage_del')")
 	public R removeById(@PathVariable Long operatorId) {
-		return R.ok(operatorService.removeOperatorById(operatorId));
+		return R.ok(trainingService.removeOperatorById(operatorId));
 	}
 
 }

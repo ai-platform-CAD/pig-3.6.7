@@ -10,19 +10,33 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@TableName("operator")
-@Schema(name = "算子表")
-public class Operator extends BaseEntity {
+@TableName("training")
+@Schema(name = "训练表")
+public class Training extends BaseEntity {
 	private static final long serialVersionUID = 1L;
-
 	@TableId(type = IdType.ASSIGN_ID)
-	@Schema(name = "operatorId")
-	private Long operatorId;
+	@Schema(name = "trainingId")
+	private Long trainingId;
 
-	@Schema(name = "算子名称")
-	private String operatorName;
+	@Schema(name = "训练名称")
+	private String trainingName;
 
-	@Schema(name = "JSON内容")
-	private String jsonContent;
+	@Schema(name = "训练容器")
+	private String trainingContainer;
+
+	@Schema(name = "训练脚本")
+	private String trainingScript;
+
+	@Schema(name = "训练指令")
+	private String trainingCommand;
+
+	@Schema(name = "输出")
+	private String trainingOutput;
+
+	@Schema(name = "xunlian")
+	private Long userId;
+
+	@Schema(name = "xunlian")
+	private Long projectId;
 
 }

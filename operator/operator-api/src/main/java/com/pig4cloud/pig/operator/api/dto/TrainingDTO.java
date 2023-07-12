@@ -6,6 +6,6 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class WorkflowDTO extends Workflow {
+public class TrainingDTO extends Workflow {
 
 }

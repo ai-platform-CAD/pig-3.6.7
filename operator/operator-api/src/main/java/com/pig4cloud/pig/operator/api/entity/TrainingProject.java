@@ -10,17 +10,17 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@TableName("training")
-@Schema(name = "训练表")
-public class Training extends BaseEntity {
+@TableName("training_project")
+@Schema(name = "训练项目表")
+public class TrainingProject extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	@TableId(type = IdType.ASSIGN_ID)
-	@Schema(name = "trainingId")
-	private Long trainingId;
+	@Schema(name = "训练项目ID")
+	private Long projectId;
 
-	@Schema(name = "训练名称")
-	private String trainingName;
+	@Schema(name = "训练项目名称")
+	private String projectName;
 
 	@Schema(name = "训练容器")
 	private String trainingContainer;

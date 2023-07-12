@@ -6,14 +6,20 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
-public class WorkflowVO implements Serializable {
+public class TrainingVO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private Long workflowId;
+	private Long trainingId;
 
-	private String workflowName;
+	private String trainingName;
 
-	private String data;
+	private String trainingContainer;
+
+	private String trainingScript;
+
+	private String trainingCommand;
+
+	private String trainingOutput;
 
 	private LocalDateTime createTime;
 }

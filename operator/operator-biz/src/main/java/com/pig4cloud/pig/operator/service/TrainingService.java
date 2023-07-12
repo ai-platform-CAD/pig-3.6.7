@@ -3,44 +3,44 @@ package com.pig4cloud.pig.operator.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.pig4cloud.pig.operator.api.dto.OperatorDTO;
-import com.pig4cloud.pig.operator.api.entity.Operator;
-import com.pig4cloud.pig.operator.api.vo.OperatorVO;
+import com.pig4cloud.pig.operator.api.dto.TrainingDTO;
+import com.pig4cloud.pig.operator.api.entity.Training;
+import com.pig4cloud.pig.operator.api.vo.TrainingVO;
 
 
-public interface OperatorService extends IService<Operator> {
+public interface TrainingService extends IService<Training> {
 	/**
 	 * 新增
 	 *
-	 * @param operatorDTO operatorDTO
-	 * @param userId      userId
+	 * @param trainingDTO TrainingDTO
+	 * @param userId      用户ID
 	 * @return 成功True，失败False
 	 */
-	boolean saveOperator(OperatorDTO operatorDTO, Long userId);
+	boolean saveTraining(TrainingDTO trainingDTO, Long userId);
 
 	/**
 	 * 删除
 	 *
-	 * @param operatorId operatorId
+	 * @param trainingId 训练ID
 	 * @return 成功True，失败False
 	 */
-	boolean removeOperatorById(Long operatorId);
+	boolean removeTrainingById(Long trainingId);
 
 	/**
 	 * 修改
 	 *
-	 * @param operatorDTO operatorDTO
+	 * @param trainingDTO TrainingDTO
 	 * @return 成功True，失败False
 	 */
-	boolean updateOperator(OperatorDTO operatorDTO);
+	boolean updateTraining(TrainingDTO trainingDTO);
 
 	/**
 	 * 分页查询
 	 *
 	 * @param page   page
 	 * @param userId userId
-	 * @return IPage<List < OperatorVO>>
+	 * @return TrainingVO集合
 	 */
-	IPage<OperatorVO> getOperatorPageByUserId(Page page, Long userId);
+	IPage<TrainingVO> getTrainingPageByUserId(Page page, Long userId);
 
 }

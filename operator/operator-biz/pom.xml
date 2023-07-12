@@ -79,12 +79,12 @@
 			<artifactId>httpclient</artifactId>
 			<version>4.5.14</version>
 		</dependency>
-		<!--argo workflow依赖-->
-		<dependency>
-			<groupId>io.argoproj.workflow</groupId>
-			<artifactId>argo-client-java</artifactId>
-			<version>v3.3.8</version>
-		</dependency>
+<!--		&lt;!&ndash;argo workflow依赖&ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>io.argoproj.workflow</groupId>-->
+<!--			<artifactId>argo-client-java</artifactId>-->
+<!--			<version>v3.3.8</version>-->
+<!--		</dependency>-->
 
 	</dependencies>
 
