@@ -15,6 +15,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -66,8 +67,10 @@ public class WorkflowController {
 	@SysLog("新增工作流")
 	@PostMapping
 	@PreAuthorize("@pms.hasPermission('workflow_manage_add')")
+	@Transactional
 	public R save(@RequestBody WorkflowDTO workflowDTO) {
 		PigUser user = SecurityUtils.getUser();
+		
 		return R.ok(workflowService.saveWorkflow(workflowDTO, user.getId()));
 	}
 
@@ -80,7 +83,7 @@ public class WorkflowController {
 	@Operation(summary = "修改工作流", description = "修改工作流子")
 	@SysLog("修改工作流")
 	@PutMapping
-	@PreAuthorize("@pms.hasPermission('operator_manage_edit')")
+	@PreAuthorize("@pms.hasPermission('workflow_manage_edit')")
 	public R updateById(@Valid @RequestBody WorkflowDTO workflowDTO) {
 		return R.ok(workflowService.updateWorkflow(workflowDTO));
 	}
@@ -94,7 +97,7 @@ public class WorkflowController {
 	@Operation(summary = "通过id删除工作流", description = "通过id删除工作流")
 	@SysLog("通过id删除工作流")
 	@DeleteMapping("/{workflowId}")
-	@PreAuthorize("@pms.hasPermission('operator_manage_del')")
+	@PreAuthorize("@pms.hasPermission('workflow_manage_del')")
 	public R removeById(@PathVariable Long workflowId) {
 		return R.ok(workflowService.removeWorkflowById(workflowId));
 	}

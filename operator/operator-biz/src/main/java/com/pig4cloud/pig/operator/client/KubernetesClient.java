@@ -1,4 +1,4 @@
-package com.pig4cloud.pig.operator.api.entity;
+package com.pig4cloud.pig.operator.client;
 
 import io.kubernetes.client.openapi.ApiClient;
 import io.kubernetes.client.openapi.ApiException;
