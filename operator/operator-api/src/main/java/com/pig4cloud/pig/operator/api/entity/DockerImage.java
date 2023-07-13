@@ -20,12 +20,12 @@ public class DockerImage extends BaseEntity {
 	private Long id;
 
 	@Schema(name = "DOCKER镜像ID")
-	private Long imageId;
+	private String imageId;
 
 	@Schema(name = "DOCKER镜像TAG")
-	private Long tag;
+	private String tag;
 
-	@Schema(name = "DOCKER镜像SIZE")
+	@Schema(name = "DOCKER镜像SIZE(Byte)")
 	private Long size;
 
 	@Schema(name = "PYTHON版本")
