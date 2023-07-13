@@ -13,54 +13,31 @@ import lombok.EqualsAndHashCode;
 @TableName("docker_image")
 @Schema(name = "DOCKER镜像表")
 public class DockerImage extends BaseEntity {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@TableId(type = IdType.ASSIGN_ID)
-	@Schema(name = "ID")
-	private Long id;
+    @TableId(type = IdType.ASSIGN_ID)
+    @Schema(name = "ID")
+    private Long id;
 
-	@Schema(name = "DOCKER镜像ID")
-<<<<<<< HEAD
-<<<<<<< HEAD
-	private String imageId;
+    @Schema(name = "DOCKER镜像ID")
+    private String imageId;
 
-	@Schema(name = "DOCKER镜像TAG")
-	private String tag;
+    @Schema(name = "DOCKER镜像TAG")
+    private String tag;
 
-	@Schema(name = "DOCKER镜像SIZE(Byte)")
-=======
-	private Long imageId;
-=======
-	private String imageId;
->>>>>>> 389452e (增加DockerAdapter，可以查询、构建和删除docker镜像)
+    @Schema(name = "DOCKER镜像SIZE(Byte)")
+    private Long size;
 
-	@Schema(name = "DOCKER镜像TAG")
-	private String tag;
+    @Schema(name = "PYTHON版本")
+    private String pythonVersion;
 
-<<<<<<< HEAD
-	@Schema(name = "DOCKER镜像SIZE")
->>>>>>> ab04333 (增加镜像的数据库中的CRUD)
-=======
-	@Schema(name = "DOCKER镜像SIZE(Byte)")
->>>>>>> 389452e (增加DockerAdapter，可以查询、构建和删除docker镜像)
-	private Long size;
+    @Schema(name = "CUDA版本")
+    private String cudaVersion;
 
-	@Schema(name = "DOCKER镜像TAG")
-	private Long tag;
+    @Schema(name = "深度学习框架")
+    private String framework;
 
-	@Schema(name = "DOCKER镜像SIZE")
-	private Long size;
-
-	@Schema(name = "PYTHON版本")
-	private String pythonVersion;
-
-	@Schema(name = "CUDA版本")
-	private String cudaVersion;
-
-	@Schema(name = "深度学习框架")
-	private String framework;
-
-	@Schema(name = "其他参数")
-	private String parameters;
+    @Schema(name = "其他参数")
+    private String parameters;
 
 }
