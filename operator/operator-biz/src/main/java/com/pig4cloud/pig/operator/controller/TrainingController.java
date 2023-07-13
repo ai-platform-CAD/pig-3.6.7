@@ -6,7 +6,7 @@ import com.pig4cloud.pig.common.core.util.R;
 import com.pig4cloud.pig.common.log.annotation.SysLog;
 import com.pig4cloud.pig.common.security.service.PigUser;
 import com.pig4cloud.pig.common.security.util.SecurityUtils;
-import com.pig4cloud.pig.operator.api.dto.OperatorDTO;
+import com.pig4cloud.pig.operator.api.dto.TrainingDTO;
 import com.pig4cloud.pig.operator.api.vo.TrainingVO;
 import com.pig4cloud.pig.operator.service.TrainingService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -46,7 +46,7 @@ public class TrainingController {
 	/**
 	 * id查询
 	 *
-	 * @param trainingId xunlianID
+	 * @param trainingId trainingId
 	 * @return R
 	 */
 	@Operation(summary = "通过id查询", description = "通过id查询")
@@ -59,44 +59,44 @@ public class TrainingController {
 	/**
 	 * 新增
 	 *
-	 * @param operatorDTO operatorDTO
+	 * @param trainingDTO trainingDTO
 	 * @return R
 	 */
-	@Operation(summary = "新增", description = "新增算子")
-	@SysLog("新增算子")
+	@Operation(summary = "新增", description = "新增训练")
+	@SysLog("新增训练")
 	@PostMapping
 	@PreAuthorize("@pms.hasPermission('training_manage_add')")
-	public R save(@RequestBody OperatorDTO operatorDTO) {
+	public R save(@RequestBody TrainingDTO trainingDTO) {
 		PigUser user = SecurityUtils.getUser();
-		return R.ok(trainingService.saveTraining(operatorDTO, user.getId()));
+		return R.ok(trainingService.saveTraining(trainingDTO, user.getId()));
 	}
 
 	/**
 	 * 修改
 	 *
-	 * @param operatorDTO operatorDTO
+	 * @param trainingDTO trainingDTO
 	 * @return R
 	 */
-	@Operation(summary = "修改算子", description = "修改算子")
-	@SysLog("修改算子")
+	@Operation(summary = "修改训练", description = "修改训练")
+	@SysLog("修改训练")
 	@PutMapping
 	@PreAuthorize("@pms.hasPermission('training_manage_edit')")
-	public R updateById(@Valid @RequestBody OperatorDTO operatorDTO) {
-		return R.ok(trainingService.updateOperator(operatorDTO));
+	public R updateById(@Valid @RequestBody TrainingDTO trainingDTO) {
+		return R.ok(trainingService.updateTraining(trainingDTO));
 	}
 
 	/**
-	 * 通过id删除算子表
+	 * 通过id删除训练表
 	 *
-	 * @param operatorId operatorId
+	 * @param trainingId trainingId
 	 * @return R
 	 */
-	@Operation(summary = "通过id删除算子", description = "通过id删除算子")
-	@SysLog("通过id删除算子")
-	@DeleteMapping("/{operatorId}")
+	@Operation(summary = "通过id删除训练", description = "通过id删除训练")
+	@SysLog("通过id删除训练")
+	@DeleteMapping("/{trainingId}")
 	@PreAuthorize("@pms.hasPermission('training_manage_del')")
-	public R removeById(@PathVariable Long operatorId) {
-		return R.ok(trainingService.removeOperatorById(operatorId));
+	public R removeById(@PathVariable Long trainingId) {
+		return R.ok(trainingService.removeTrainingById(trainingId));
 	}
 
 }

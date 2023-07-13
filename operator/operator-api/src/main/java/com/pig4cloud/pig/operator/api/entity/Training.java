@@ -15,7 +15,7 @@ import lombok.EqualsAndHashCode;
 public class Training extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 	@TableId(type = IdType.ASSIGN_ID)
-	@Schema(name = "trainingId")
+	@Schema(name = "训练ID")
 	private Long trainingId;
 
 	@Schema(name = "训练名称")
@@ -33,10 +33,10 @@ public class Training extends BaseEntity {
 	@Schema(name = "输出")
 	private String trainingOutput;
 
-	@Schema(name = "xunlian")
+	@Schema(name = "所属用户ID")
 	private Long userId;
 
-	@Schema(name = "xunlian")
+	@Schema(name = "训练项目ID")
 	private Long projectId;
 
 }

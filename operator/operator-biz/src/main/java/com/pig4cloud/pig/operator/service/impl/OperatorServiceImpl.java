@@ -40,7 +40,7 @@ public class OperatorServiceImpl extends ServiceImpl<OperatorMapper, Operator> i
 
 	@Override
 	public boolean removeOperatorById(Long operatorId) {
-		log.info("Removing operatorId id={}", operatorId);
+		log.info("Removing operator id={}", operatorId);
 		// 从数据库中移除
 		// operator
 		baseMapper.deleteById(operatorId);

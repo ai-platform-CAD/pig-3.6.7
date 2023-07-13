@@ -22,16 +22,7 @@ public class TrainingProject extends BaseEntity {
 	@Schema(name = "训练项目名称")
 	private String projectName;
 
-	@Schema(name = "训练容器")
-	private String trainingContainer;
-
-	@Schema(name = "训练脚本")
-	private String trainingScript;
-
-	@Schema(name = "训练指令")
-	private String trainingCommand;
-
-	@Schema(name = "输出")
-	private String trainingOutput;
+	@Schema(name = "训练项目数据")
+	private String projectData;
 
 }
