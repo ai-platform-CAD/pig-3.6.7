@@ -20,12 +20,29 @@ public class DockerImage extends BaseEntity {
 	private Long id;
 
 	@Schema(name = "DOCKER镜像ID")
+<<<<<<< HEAD
+<<<<<<< HEAD
 	private String imageId;
 
 	@Schema(name = "DOCKER镜像TAG")
 	private String tag;
 
 	@Schema(name = "DOCKER镜像SIZE(Byte)")
+=======
+	private Long imageId;
+=======
+	private String imageId;
+>>>>>>> 389452e (增加DockerAdapter，可以查询、构建和删除docker镜像)
+
+	@Schema(name = "DOCKER镜像TAG")
+	private String tag;
+
+<<<<<<< HEAD
+	@Schema(name = "DOCKER镜像SIZE")
+>>>>>>> ab04333 (增加镜像的数据库中的CRUD)
+=======
+	@Schema(name = "DOCKER镜像SIZE(Byte)")
+>>>>>>> 389452e (增加DockerAdapter，可以查询、构建和删除docker镜像)
 	private Long size;
 
 	@Schema(name = "DOCKER镜像TAG")
