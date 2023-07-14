@@ -108,3 +108,19 @@ spring:
           predicates:
             - Path=/operator/**
 ```
+
+## 配置SwaggerUI `nacos/application-dev.yml`
+
+```yaml
+# swagger 配置
+swagger:
+  enabled: true
+  title: Pig Swagger API
+  gateway: http://${GATEWAY_HOST:pig-gateway}:${GATEWAY-PORT:9999}
+  token-url: ${swagger.gateway}/auth/oauth2/token
+  scope: server
+  services:
+    pig-upms-biz: admin
+    pig-codegen: gen
+    operator-biz: operator
+```
