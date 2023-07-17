@@ -62,7 +62,7 @@ public class DockerImageController {
 	@Operation(summary = "新增镜像", description = "新增镜像")
 	@SysLog("新增镜像")
 	@PostMapping
-	@PreAuthorize("@pms.hasPermission('operator_manage_add')")
+	@PreAuthorize("@pms.hasPermission('image_manage_add')")
 	public R save(@RequestBody DockerImageDTO dockerImageDTO) {
 		return R.ok(dockerImageService.saveImage(dockerImageDTO));
 	}
