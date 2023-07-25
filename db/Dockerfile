@@ -21,8 +21,8 @@ COPY ./pig.sql $WORK_PATH/
 COPY ./pig_config.sql $WORK_PATH/
 COPY ./pig_codegen.sql $WORK_PATH/
 COPY ./pig_job.sql $WORK_PATH/
-# 算子编排模块sql
-COPY ./operator/operator.sql $WORK_PATH/operator/
+# 算子模块sql
+COPY ./operator/ $WORK_PATH/operator/
 
 #定义shell文件名
 ENV INSTALL_DB_SHELL initdb.sh
