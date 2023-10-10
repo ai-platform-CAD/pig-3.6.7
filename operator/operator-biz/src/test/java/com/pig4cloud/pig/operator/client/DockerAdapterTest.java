@@ -1,11 +1,14 @@
 package com.pig4cloud.pig.operator.client;
 
+import com.pig4cloud.pig.operator.api.docker.DockerProcess;
 import com.pig4cloud.pig.operator.api.entity.DockerImage;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 class DockerAdapterTest {
+
+	DockerAdapter dockerAdapter = DockerAdapter.getInstance();
 
     @Test
     void listImages() {
@@ -29,4 +32,32 @@ class DockerAdapterTest {
         boolean b = dockerAdapter.removeImage(imageId);
         System.out.println(b);
     }
+
+	@Test
+	void inspectImageInfo() {
+	}
+
+	@Test
+	void testListImages() {
+	}
+
+	@Test
+	void testSaveImage() {
+	}
+
+	@Test
+	void testRemoveImage() {
+	}
+
+	@Test
+	void listProcess() {
+		List<DockerProcess> processList = dockerAdapter.listProcesses();
+		System.out.println(processList.size());
+	}
+
+	@Test
+	void listAllProcesses() {
+		List<DockerProcess> processList = dockerAdapter.listAllProcesses();
+		System.out.println(processList.size());
+	}
 }

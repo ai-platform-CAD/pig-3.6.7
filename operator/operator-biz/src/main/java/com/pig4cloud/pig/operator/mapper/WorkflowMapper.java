@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.pig4cloud.pig.operator.api.entity.Workflow;
-import com.pig4cloud.pig.operator.api.vo.OperatorVO;
 import com.pig4cloud.pig.operator.api.vo.WorkflowVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -18,7 +17,7 @@ public interface WorkflowMapper extends BaseMapper<Workflow> {
 	 *
 	 * @param page   page
 	 * @param userId userId
-	 * @return IPage<List < SecretVO>>
+	 * @return 工作流视图集合
 	 */
 	IPage<WorkflowVO> getWorkflowPageByUserId(Page page, @Param("userId") Long userId);
 }
