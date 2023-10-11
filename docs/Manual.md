@@ -72,11 +72,11 @@ docker run -itd --restart=always --name pig-upms --hostname pig-upms pig-upms
 
 ```shell
 # pig-monitor
-docker rm -f pig-upms
+docker rm -f pig-monitor
 docker run -itd --restart=always -p 5001:5001 --name pig-monitor --hostname pig-monitor pig-monitor
 
 # pig-sentinel
-docker rm -f pig-upms
+docker rm -f pig-sentinel
 docker run -itd --restart=always -p 5003:5003 --name pig-sentinel --hostname pig-sentinel pig-sentinel
 
 # pig-codegen
@@ -123,4 +123,17 @@ swagger:
     pig-upms-biz: admin
     pig-codegen: gen
     operator-biz: operator
+```
+
+## 停止所有docker容器
+
+```shell
+# 停止所有docker容器
+docker stop $(docker ps -q)
+
+# 删除所有已停止docker容器
+docker rm $(docker ps -a -q)
+
+# 删除所有docker镜像（对应容器已停止）
+docker rmi $(docker images -a -q)
 ```
