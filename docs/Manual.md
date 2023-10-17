@@ -137,3 +137,13 @@ docker rm $(docker ps -a -q)
 # 删除所有docker镜像（对应容器已停止）
 docker rmi $(docker images -a -q)
 ```
+
+# docker-compse
+默认情况下docker-compose会建立一个默认的网络，
+名称为docker-compose.yml所在目录名称小写形式加上“_default”
+本项目为`pig-367_default`，模式为`bridge`
+
+docker-compose创建的网络网段会改变，导致jdbc无法连接上mysql
+解决：
+1. 使用`docker network inspect pig-367_default | grep pig-mysql -A 5`查看`IPv4`地址
+2. jdbc的`host`填上该地址
